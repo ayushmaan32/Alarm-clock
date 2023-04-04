@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <h1 class="text-center">Alarm Clock</h1>
+
+      <div class="container">
+        <div id="currentTimeDisplay"></div>
+
+        <!-- adding inputs -->
+        <form action="">
+          <div class="input-box">
+            <!-- input for hours -->
+            <input
+              type="number"
+              max="12"
+              min="1"
+              id="hours"
+              required
+              value="00"
+            />
+            <!-- input for minutes -->
+            <input
+              type="number"
+              max="59"
+              min="0"
+              id="minutes"
+              required
+              value="00"
+            />
+            <!-- input for seconds -->
+            <input
+              type="number"
+              max="59"
+              min="0"
+              id="seconds"
+              required
+              value="00"
+            />
+            <!-- input of zone -->
+            <select id="zone-time" name="timeZone">
+              <option value="am">am</option>
+              <option value="pm">pm</option>
+            </select>
+          </div>
+          <!-- buttons -->
+          <div class="button-container">
+            <button type="submit" id="setAlarm">Set Alarm</button>
+            <button type="button" id="stop">Stop</button>
+          </div>
+        </form>
+      </div>
+    </main>
+
+    <script src="index.js" />
+  </body>
+</html>
