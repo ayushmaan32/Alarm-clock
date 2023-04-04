@@ -25,7 +25,7 @@ function display() {
     secs = "0" + secs;
   }
 
-  let clockTime = hours + ":" + mins + ":" + secs + "  n" + zone;
+  let clockTime = hours + ":" + mins + ":" + secs + " " + zone;
 
   currentTimeDisplay.innerText = clockTime;
 
