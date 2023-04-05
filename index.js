@@ -1,4 +1,13 @@
 const currentTimeDisplay = document.getElementById("currentTimeDisplay");
+const hours = document.getElementById("hours");
+const minutes = document.getElementById("minutes");
+const seconds = document.getElementById("seconds");
+const timeZone = document.getElementById("zone-time");
+
+const setAlarm = document.getElementById("set-alarm");
+const stopAlarm = document.getElementById("stop");
+
+let alarmList = [];
 
 console.log("javascript is running");
 
@@ -35,3 +44,53 @@ function display() {
 }
 
 display();
+
+function createAlarm() {
+  let hrs = hours.value;
+  let mins = minutes.value;
+  let secs = seconds.value;
+  let zone = timeZone.value;
+
+  if (parseInt(hrs) > 12 || parseInt(mins) > 59 || parseInt(secs) > 59) {
+    alert(
+      "Please enter a valid time to set up an alarm,Hours must not be greater than 12 and minutes and seconds must not be greater than 59 !!!!"
+    );
+    return;
+  }
+
+  if (parseInt(hrs) == 0) {
+    alert("Please enter the valid time !!");
+    return;
+  }
+  if (parseInt(hrs) < 10) {
+    hrs = "0" + parseInt(hrs);
+  } else {
+    hrs = "" + parseInt(hrs);
+  }
+  if (parseInt(mins) < 10) {
+    mins = "0" + parseInt(mins);
+  } else {
+    mins = "" + parseInt(mins);
+  }
+  if (parseInt(secs) < 10) {
+    secs = "0" + parseInt(secs);
+  } else {
+    secs = "" + parseInt(secs);
+  }
+
+  const alarmtime = `${hrs}:${mins}:${secs} ${zone}`;
+  alarmList.push({
+    alarmtime,
+    id: Math.floor(Math.random() * 1000),
+  });
+
+  hours.value = "00";
+  minutes.value = "00";
+  seconds.value = "00";
+  renderAlarmList();
+}
+
+setAlarm.addEventListener("click", (e) => {
+  e.preventDefault();
+  createAlarm();
+});
