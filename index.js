@@ -7,6 +7,8 @@ const timeZone = document.getElementById("zone-time");
 const setAlarm = document.getElementById("set-alarm");
 const stopAlarm = document.getElementById("stop");
 
+const alarmContainer = document.getElementsByClassName("alarms-list-container");
+
 let alarmList = [];
 
 console.log("javascript is running");
@@ -78,16 +80,39 @@ function createAlarm() {
     secs = "" + parseInt(secs);
   }
 
-  const alarmtime = `${hrs}:${mins}:${secs} ${zone}`;
-  alarmList.push({
-    alarmtime,
-    id: Math.floor(Math.random() * 1000),
-  });
+  const newAlarmTime = `${hrs}:${mins}:${secs} ${zone}`;
 
-  hours.value = "00";
-  minutes.value = "00";
-  seconds.value = "00";
-  renderAlarmList();
+  const alarmExists = alarmList.some((alarm) => alarm.time === newAlarmTime);
+
+  if (alarmExists) {
+    alert("alarm already exist");
+    return;
+  } else {
+    alarmList.push({
+      time: newAlarmTime,
+    });
+
+    hours.value = "00";
+    minutes.value = "00";
+    seconds.value = "00";
+    renderAlarmList();
+  }
+}
+
+function renderAlarmList() {
+  // Clear the current list of alarms
+  alarmContainer[0].innerHTML = "";
+
+  // Render each alarm as a list item
+  alarmList.forEach((alarm) => {
+    const listItem = document.createElement("li");
+    listItem.classList.add("alarm-list");
+
+    listItem.innerHTML = ` <div class ="info"><ion-icon name="alarm-outline"></ion-icon> <p>${alarm.time}</p></div>    <button class="delete-btn">Delete</button> `;
+
+    console.log(listItem);
+    alarmContainer[0].appendChild(listItem);
+  });
 }
 
 setAlarm.addEventListener("click", (e) => {

@@ -16,7 +16,7 @@ h1 {
   width: 85%;
   max-width: 30em;
   position: absolute;
-  left: 25%;
+  left: 20%;
   top: 20%;
   border-radius: 10px;
   padding: 3.12em 6em;
@@ -95,4 +95,31 @@ button {
   background-color: #007bff;
   width: 65px;
   margin-right: 22px;
+}
+
+.alarm-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.alarm-list .info {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.alarm-list .info p {
+  font-size: 22px;
+  margin-left: auto;
+}
+.alarm-list .delete-btn {
+  background-color: lightslategray;
+  color: #fff;
+}
+
+ion-icon {
+  font-size: 22px;
+  margin-right: 10px;
 }
