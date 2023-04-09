@@ -9,24 +9,36 @@ const stopAlarm = document.getElementById("stop");
 
 const alarmContainer = document.getElementsByClassName("alarms-list-container");
 
+// audio to ring alarm
+const audio = new Audio("./assets/sound1.mp3");
+
+//Add loop to continue alarm
+audio.loop = true;
+
+audio.load();
+// creating empty array of alarm
 let alarmList = [];
 
 console.log("javascript is running");
 
+//function to display current time
 function display() {
   let currentTime = new Date();
   let hours = currentTime.getHours();
   let mins = currentTime.getMinutes();
   let secs = currentTime.getSeconds();
 
-  let zone = "AM";
+  let zone = "am";
 
   if (hours > 12) {
     hours = hours - 12;
-    zone = "PM";
+    zone = "pm";
   }
   if (hours === 0) {
     hours = 12;
+  }
+  if (hours < 10) {
+    hours = "0" + hours;
   }
 
   if (mins < 10) {
@@ -40,6 +52,12 @@ function display() {
 
   currentTimeDisplay.innerText = clockTime;
 
+  alarmList.forEach((alarm) => {
+    if (alarm.time === clockTime) {
+      ringAlarm(alarm);
+    }
+  });
+
   let timeId = setInterval(function () {
     display();
   }, 1000);
@@ -47,6 +65,7 @@ function display() {
 
 display();
 
+//function to create new Alarm
 function createAlarm() {
   let hrs = hours.value;
   let mins = minutes.value;
@@ -99,6 +118,7 @@ function createAlarm() {
   }
 }
 
+// Function to Render the Alarm list
 function renderAlarmList() {
   // Clear the current list of alarms
   alarmContainer[0].innerHTML = "";
@@ -114,8 +134,24 @@ function renderAlarmList() {
     alarmContainer[0].appendChild(listItem);
   });
 }
+//function to ring current Alarm
+function ringAlarm(alarm) {
+  // alert(`hey it is ${alarm.time}`);
+  audio.play();
+}
+// function to stop current alarm
+function stopCurrentAlarm() {
+  audio.pause();
+  // clearInterval(timeId);
+  alert("Alarm has stopped");
+}
 
 setAlarm.addEventListener("click", (e) => {
   e.preventDefault();
   createAlarm();
+});
+
+stopAlarm.addEventListener("click", (e) => {
+  e.preventDefault();
+  stopCurrentAlarm();
 });
