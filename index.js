@@ -1,3 +1,4 @@
+// accessing variable
 const currentTimeDisplay = document.getElementById("currentTimeDisplay");
 const hours = document.getElementById("hours");
 const minutes = document.getElementById("minutes");
@@ -54,7 +55,7 @@ function display() {
 
   alarmList.forEach((alarm) => {
     if (alarm.time === clockTime) {
-      ringAlarm(alarm);
+      ringAlarm();
     }
   });
 
@@ -136,14 +137,12 @@ function renderAlarmList() {
   });
 }
 //function to ring current Alarm
-function ringAlarm(alarm) {
-  // alert(`hey it is ${alarm.time}`);
+function ringAlarm() {
   audio.play();
 }
 // function to stop current alarm
 function stopCurrentAlarm() {
   audio.pause();
-  // clearInterval(timeId);
   alert("Alarm has stopped");
 }
 
