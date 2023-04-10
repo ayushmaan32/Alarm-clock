@@ -109,6 +109,7 @@ function createAlarm() {
   } else {
     alarmList.push({
       time: newAlarmTime,
+      id: Math.floor(Math.random() * 1000),
     });
 
     hours.value = "00";
@@ -128,7 +129,7 @@ function renderAlarmList() {
     const listItem = document.createElement("li");
     listItem.classList.add("alarm-list");
 
-    listItem.innerHTML = ` <div class ="info"><ion-icon name="alarm-outline"></ion-icon> <p>${alarm.time}</p></div>    <button class="delete-btn">Delete</button> `;
+    listItem.innerHTML = ` <div class ="info"><ion-icon name="alarm-outline"></ion-icon> <p>${alarm.time}</p></div>    <button class="delete-btn" onClick= remove(this.value) value= ${alarm.id}>Delete</button> `;
 
     console.log(listItem);
     alarmContainer[0].appendChild(listItem);
@@ -146,11 +147,21 @@ function stopCurrentAlarm() {
   alert("Alarm has stopped");
 }
 
+// Remove alarm from arryList when "Delete" button is clicked
+const remove = (value) => {
+  console.log(value);
+  alarmList = alarmList.filter((item) => item.id != value);
+  console.log(alarmList);
+  renderAlarmList();
+};
+
+//add ane EventListner to an setAlarm button
 setAlarm.addEventListener("click", (e) => {
   e.preventDefault();
   createAlarm();
 });
 
+//add ane EventListner to an stopAlarm button
 stopAlarm.addEventListener("click", (e) => {
   e.preventDefault();
   stopCurrentAlarm();
