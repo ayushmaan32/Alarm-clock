@@ -15,8 +15,8 @@ body {
   text-decoration: underline;
   letter-spacing: 1.5px;
   word-spacing: 4px;
-  font-size: 40px;
-  color: rgb(5, 119, 123);
+  font-size: 3.1rem;
+  color: rgba(5, 119, 123, 0.6);
   margin-top: 10px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
@@ -24,10 +24,9 @@ body {
 /* styles added to alarm container */
 .container {
   background-color: #fff;
-  width: 85%;
-  max-width: 30em;
+  width: 50%;
   position: absolute;
-  left: 23.4%;
+  left: 20%;
   top: 20%;
   border-radius: 50px;
   padding: 3.12em 6em;
@@ -36,13 +35,13 @@ body {
 
 /* styles added to current time display */
 #currentTimeDisplay {
-  font-size: 3rem;
+  width: 60%;
+  font-size: 3.5rem;
   font-weight: 600;
   box-shadow: inset 0 0 8px 3px rgba(104, 177, 236, 0.25);
-  padding: 7px;
   font-family: "Roboto Mono", monospace;
   border-radius: 15px;
-  padding-left: 20%;
+  padding: 1% 20%;
 }
 
 /* form designs */
@@ -56,7 +55,7 @@ form {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  margin-left: 10%;
+  justify-content: center;
 }
 
 input[type="number"] {
@@ -90,7 +89,6 @@ input:focus {
 button {
   font-size: 16px;
   padding: 8px 12px;
-  background-color: #007bff;
   color: #fff;
   margin: 10px 15px;
   border: none;
@@ -104,12 +102,18 @@ button {
   background-color: red;
   width: 65px;
 }
+#stop:hover {
+  background-color: rgb(219, 74, 74);
+}
 
 /* setAlarm button */
 #set-alarm {
   background-color: #007bff;
   width: 65px;
   margin-right: 22px;
+}
+#set-alarm:hover {
+  background-color: #3893f4;
 }
 
 h2 {
@@ -146,4 +150,66 @@ ion-icon {
   font-size: 22px;
   margin-right: 10px;
   color: dimgray;
+}
+
+/* Responsive */
+@media screen and (max-width: 1100px) {
+  .container {
+    width: 51%;
+    position: absolute;
+    left: 10%;
+    top: 20%;
+  }
+
+  #currentTimeDisplay {
+    font-size: 2.5rem;
+    padding: 2% 20%;
+  }
+}
+
+/* Responsive */
+@media screen and (max-width: 500px) {
+  .container {
+    width: 51%;
+    position: absolute;
+    left: 0.5%;
+    top: 20%;
+  }
+
+  #currentTimeDisplay {
+    font-size: 1.6rem;
+    padding: 5% 1% 5% 20%;
+    width: 100%;
+    margin-left: -25 px;
+  }
+
+  .input-box {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+  button {
+    font-size: 11px;
+  }
+
+  ion-icon {
+    font-size: 18px;
+  }
+
+  input[type="number"] {
+    margin-right: 5px;
+    font-size: 13px;
+    width: 40px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    height: 23px;
+  }
+
+  .alarm-list .info p {
+    font-size: 16px;
+  }
+  .alarm-list .delete-btn {
+    font-size: 10px;
+    width: min-content;
+  }
 }
